@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+<!-- Inicio del bloque que inserta el título de la página -->
+{% block title %}
+Agregar Predio
+{% endblock title %}
+<!-- Fin del bloque que asigna el título de la página -->
+
+<!-- Inicio del bloque que inserta el cuerpo de la página -->
+{% block body %}
+
+<!-- Carga crispy para mejorar visualización del form  -->
+{% load crispy_forms_tags %}
+    <form method="POST">
+    {% csrf_token %}
+    <br>
+    {{form | crispy }}
+    <p align="right">
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </p>
+</form>
+{% endblock body %}
+<!-- Fin del bloque que inserta el cuerpo de la página -->

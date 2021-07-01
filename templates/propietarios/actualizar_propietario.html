@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+<!-- Bloque que inserta el título de la página -->
+{% block title %}
+Agregar Propietario
+{% endblock title %}
+<!-- Fin del bloque -->
+
+{% load crispy_forms_tags %}
+
+<!-- Bloque que inserta el cuerpo de la página -->
+{% block body %}
+    <form method="POST">
+    {% csrf_token %}
+    <br>
+    {{form | crispy }}
+    <p align="right">
+        <button type="submit" class="btn btn-success">Guardar</button>    </p>
+    </form>
+{% endblock body %}
+<!-- Fin del bloque -->

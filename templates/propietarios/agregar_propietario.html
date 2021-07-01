@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Agregar Predio
+{% endblock title %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <form method="POST">
+    {% csrf_token %}
+    <br>
+    {{form | crispy }}
+    <p align="right">
+        <button type="submit" class="btn btn-success">Agregar</button>
+        <button type="reset" class="btn btn-info">Limpiar</button>
+    </p>
+</form>
+{% endblock body %}

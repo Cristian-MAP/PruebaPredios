@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+<!-- Bloque que inserta el título de la página -->
+{% block title %}
+Listar Propietarios
+{% endblock title %}
+<!-- Fin del bloque -->
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<br>
+<!-- Formulario para filtrar datos -->
+<form method="get" class="form-inline">
+    {{filter.form | crispy}}
+    &nbsp
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+<!-- Fin del formulario -->
+<br>
+<h3 align="center">Listado de Propietarios</h1>
+    <br>
+    {% if  filter.qs %}
+    <!-- Carga la información para mostrar en la tabla -->
+    <table class="table">
+        <thead class="thead-light">
+            <!-- cabecera de la tabla -->
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Predios</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+            <!-- fin de la cabecera -->
+        {% for propietario in filter.qs %}
+        <tr>
+            <td>{{propietario.identificacion}}</td>
+            <td>{{propietario.nombre}}</td>
+            {% if propietario.role == 1 %}
+            <td>Persona</td>
+            {% else %}
+            <td>Empresa</td>
+            {% endif %}
+            <td>
+                {{propietario.predios.all | length }}
+            </td>
+            <td>
+                <a href="{% url 'predios:detalle_propietario' propietario.identificacion %}"
+                    class="btn btn-success">Detalle</a>
+                <a href="{% url 'predios:eliminar_propietario' propietario.identificacion %}"
+                    class="btn btn-danger">Eliminar
+                    Propietario</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No existen Propietarios</h1>
+        {% endif%}
+    </table>
+    <!-- Fin de la tabla que muestra los datos -->
+    {% endblock body %}

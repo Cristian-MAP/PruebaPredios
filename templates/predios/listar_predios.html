@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+
+<!-- Inicio del bloque que inserta el título de la página -->
+{% block title %}
+Listar Predios
+{% endblock title %}
+<!-- Fin del bloque que asigna el título de la página -->
+
+
+{% load crispy_forms_tags %}
+
+<!-- Inicio del bloque que inserta el cuerpo de la página -->
+{% block body %}
+<br>
+<!-- Formulario para filtrar datos -->
+<form method="get" class="form-inline">
+    {{filter.form | crispy}}
+    &nbsp
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+<!-- Fin del formulario -->
+<br>
+<h3 align="center">Listado de Predios</h1>
+    <br>
+    
+    {% if  filter.qs %}
+    <!-- Carga la información para mostrar en la tabla -->
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Cédula catastral</th>
+                <th>Dirección o nombre</th>
+                <th>Matrícula mobiliaria</th>
+                <th>Tipo de predio</th>
+                <th>Propietarios</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+
+        {% for predio in filter.qs %}
+        <tr>
+            <td>{{predio.cedula_catastral}}</td>
+            <td>{{predio.direccion}}</td>
+            <td>{{predio.matricula_mobiliaria}}</td>
+            {% if predio.tipo_predio == 1 %}
+            <td>Urbano</td>
+            {% else %}
+            <td>Rural</td>
+            {% endif %}
+            <td>{{predio.propietario_set.all | length}}</td>
+            <td>
+                <a href="{% url 'predios:detalle_predio' predio.matricula_mobiliaria %}"
+                    class="btn btn-success">Detalles</a>
+                <a href="{% url 'predios:eliminar_predio' predio.matricula_mobiliaria %}"
+                    class="btn btn-danger">Eliminar
+                    Predio</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No existen predios</h1>
+        {% endif %}
+    </table>
+    <!-- Fin de la tabla que muestra los datos -->
+{% endblock body %}

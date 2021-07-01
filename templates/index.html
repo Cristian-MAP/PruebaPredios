@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <!-- Inserta el título en la página -->
+    {% block title %}
+    Inicio
+    {% endblock title %}
+  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- barra de navegación superior -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'predios:inicio' %}">Inicio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <!-- Desplegable Predios -->
+          <a class="nav-link dropdown-toggle" href="{% url 'predios:listar_predios' %}" id="navbarDropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Predios
+          </a>
+          <!-- Opciones del desplegable predios -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'predios:agregar_predio'%}">Agregar</a>
+            <a class="dropdown-item" href="{% url 'predios:listar_predios'%}">Listado</a>
+          </div>
+        </li>
+
+        <!-- Desplegable propietarios -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{% url 'predios:listar_propietarios' %}" id="navbarDropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Propietarios
+          </a>
+          <!-- Opcioness del desplegable propietarios -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'predios:agregar_propietario' %}">Agregar</a>
+            <a class="dropdown-item" href="{% url 'predios:listar_propietarios'%}">Listado</a>
+          </div>
+        </li>
+      </ul>
+  </nav>
+  <!-- Fin de la barra de navegación -->
+
+
+  <div class="container">
+    <!-- Bloque para insertar el cuerpo de la página -->
+    {% block body %}
+    <br>
+    <h1 align="center">Bienvenido</h1>
+    {% endblock body %}
+    <!-- Fin del bloque -->
+  </div>
+
+
+<!-- Muestra las alertas en la página -->
+  {% if messages %}
+  {% for m in messages%}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    Swal.fire({
+      "title": "Atención",
+      "text": "{{m}}",
+      "icon": "success"
+    })
+  </script>
+  {% endfor%}
+  {% endif %}
+  <!-- Fin de las alertas -->
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>

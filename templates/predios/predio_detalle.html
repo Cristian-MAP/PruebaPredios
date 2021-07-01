@@ -1,0 +1,46 @@
+{% extends 'index.html'%}
+
+<!-- Inicio del bloque que inserta el título de la página -->
+{% block title %}
+Detalle
+{% endblock title %}
+<!-- Fin del bloque que asigna el título de la página -->
+
+<!-- Inicio del bloque que inserta el cuerpo de la página -->
+{% block body %}
+<!-- Muestra la información del predio -->
+<br>
+<h1 align="center">Detalles de: {{ predio.direccion}}</h1>
+<p>Cédula catastral : {{predio.cedula_catastral}}</p>
+<p>Matrícula Mobiliaria : {{predio.matricula_mobiliaria}}</p>
+<p>Tipo de predio :
+    {% if predio.tipo_predio == 1 %}
+    Urbano
+    {% else %}
+    Rural
+    {% endif %}
+</p>
+<h5>Propietarios :</h5>
+
+<!-- Tabla que muestra propietarios del predio -->
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Nombre</th>
+            <th>Identificación</th>
+        </tr>
+    </thead>
+    <!-- Recorre los propietarios del predio -->
+    {% for prop in predio.propietario_set.all %}
+    <tr>
+        <td>{{prop.nombre}}</td>
+        <td>{{prop.identificacion}}</td>
+    </tr>
+    {% endfor %}
+   
+</table>
+<!-- Fin de la tabla -->
+<br>
+<a href="{% url 'predios:actualizar_predio' predio.matricula_mobiliaria %}" class="btn btn-success">Editar</a>
+{% endblock body %}
+ <!-- Fin del bloque que inserta el cuerpo de la página-->

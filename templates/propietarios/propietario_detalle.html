@@ -1,0 +1,43 @@
+{% extends 'index.html'%}
+
+
+{% block title %}
+Detalle propietario
+{% endblock title %}
+
+
+{% block body %}
+<br>
+<h1 align="center">Detalles de: {{ propietario.nombre}}</h1>
+<p>Identificacion : {{propietario.identificacion}}</p>
+<p>Rol :
+    {% if propietario.role == 1 %}
+    Persona
+    {% else %}
+    Empresa
+    {% endif %}
+</p>
+<h5>Predios :</h5>
+<!-- Tabla que muestra propietarios del predio -->
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Cédula catstral</th>
+            <th>Dirección</th>
+            <th>Matricula immobiliaria</th>
+        </tr>
+    </thead>
+    <!-- Recorre y muestra los predios del propietario -->
+    {% for predio in propietario.predios.all %}
+    <tr>
+        <td>{{predio.cedula_catastral}}</td>
+        <td>{{predio.direccion}}</td>
+        <td>{{predio.matricula_mobiliaria}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+<!-- Fin de la tabla -->
+<br>
+<a href="{% url 'predios:actualizar_propietario' propietario.identificacion %}" class="btn btn-success">Editar</a>
+{% endblock body %}
