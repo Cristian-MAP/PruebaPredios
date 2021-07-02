@@ -4,7 +4,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://administrador-predios.herokuapp.com/']
+ALLOWED_HOSTS = ['https://administrador-predios.herokuapp.com']
 
 
 # Database
