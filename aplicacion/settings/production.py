@@ -7,8 +7,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['https://administrador-predios.herokuapp.com/']
 
 
-
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
