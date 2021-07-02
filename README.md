@@ -2,6 +2,7 @@
 Aplicación que permite registrar y administrar propietarios de predios y sus predios
 Es una aplicación que realiza el CRUD para los predios y los propietarios.
 Link Deploy: https://administrador-predios.herokuapp.com
+Para probar el proyecto de manera local, cambiar, en el archivo wsgi y manage.py, la palabra "production" por la palabra "local"
 
 Funcionamiento
 Para agregar predios/propietarios:
