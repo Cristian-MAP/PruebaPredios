@@ -13,10 +13,10 @@ ALLOWED_HOSTS = ['administrador-predios.herokuapp.com']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'predios',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST':'localhost',
+        'NAME': 'd3modeo8s86cc2',
+        'USER': 'ursqoezpcnunmc',
+        'PASSWORD': 'af8f76554a396ab8ab82ca3645b796c5582359568697732ea3e0c0c29ebfb1be',
+        'HOST':'ec2-34-206-8-52.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
